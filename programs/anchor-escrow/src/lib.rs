@@ -3,7 +3,7 @@ mod contexts;
 use contexts::*;
 mod states;
 
-declare_id!("AHnWUmyXfyRqtN3AwoRxMoyVKskyF9cS59YE2ZbqB8x6");
+declare_id!("2QXy7HViorPwziL1A2eFMHQzYBjjEZC3LJ6Bjv5wEeTT");
 
 #[program]
 pub mod anchor_escrow {
