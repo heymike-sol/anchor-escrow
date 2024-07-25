@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 use anchor_spl::{
     associated_token::AssociatedToken,
     token::{
-        close_account, transfer_checked, CloseAccount, Mint, Token, TokenAccount, TransferChecked,
+        transfer_checked, Mint, Token, TokenAccount, TransferChecked,
     },
 };
 
@@ -53,7 +53,7 @@ impl<'info> Cancel<'info> {
             self.mint_a.decimals,
         )?;
 
-        close_account(self.into_close_context().with_signer(&signer_seeds))
+        Ok(())
     }
 
     fn into_refund_context(&self) -> CpiContext<'_, '_, '_, 'info, TransferChecked<'info>> {
@@ -61,15 +61,6 @@ impl<'info> Cancel<'info> {
             from: self.vault.to_account_info(),
             mint: self.mint_a.to_account_info(),
             to: self.initializer_ata_a.to_account_info(),
-            authority: self.escrow.to_account_info(),
-        };
-        CpiContext::new(self.token_program.to_account_info(), cpi_accounts)
-    }
-
-    fn into_close_context(&self) -> CpiContext<'_, '_, '_, 'info, CloseAccount<'info>> {
-        let cpi_accounts = CloseAccount {
-            account: self.vault.to_account_info(),
-            destination: self.initializer.to_account_info(),
             authority: self.escrow.to_account_info(),
         };
         CpiContext::new(self.token_program.to_account_info(), cpi_accounts)

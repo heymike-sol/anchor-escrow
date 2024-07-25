@@ -1,11 +1,11 @@
-[programs.devnet]
+[programs.mainnet]
 anchor_escrow = "2QXy7HViorPwziL1A2eFMHQzYBjjEZC3LJ6Bjv5wEeTT"
 
 [registry]
 url = "https://api.apr.dev"
 
 [provider]
-cluster = "devnet"
+cluster = "mainnet"
 wallet = "/Users/mitim/.config/solana/programs/solana-token-staking.json"
 
 [scripts]
